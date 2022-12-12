@@ -289,12 +289,7 @@ button {
 	font-size: 15px;
 }
 
-@media (max-height: 800px) and (orientation: landscape)
-{ body {
-	position: relative;} 
-}
-
-@media (max-width: 1000px)
+@media (max-width: 900px)
 {
 	#contGral {
 		width: 100%;
