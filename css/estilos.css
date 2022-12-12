@@ -289,7 +289,7 @@ button {
 	font-size: 15px;
 }
 
-@media (max-width: 470px)
+@media (max-width: 490px)
 {
 	#contGral {
 		width: 100%;
