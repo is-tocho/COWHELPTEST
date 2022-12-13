@@ -18,8 +18,8 @@ let slotsTaken = false;
 
 
 let tareasSlots = ["null", "null"];
-let horaTareasSlots = [00,00];
-let minutosTareasSlots = [00,00];
+let horaTareasSlots = [99,99];
+let minutosTareasSlots = [99,99];
 let duracionTareasSlots = [00,00];
 let duracionTareasMinutosSlots = [00,00]
 let lastTareasSlotsSelector;
@@ -76,6 +76,15 @@ window.onload = () => {
         case 23: document.getElementById("SaludoInicial").innerHTML = saludosNoche[Math.floor(Math.random() * saludosNoche.length)]; escribirMensaje("letI", 500, 500); break;
     }
     escribirMensaje("letII", 1500, 750);
+
+    if (!("Notification" in window)) {
+        console.log("Este navegador no es compatible con las notificaciones de escritorio");
+      }
+
+        if (Notification.permission !== "granted")
+        {
+            Notification.requestPermission();
+        }
 }
 
 
@@ -87,7 +96,16 @@ window.setInterval(function(){
     {
         horaEventosSlots[0] = 99;
         minutosEventosSlots[0] = 99;
-        alert(eventosSlots[0]);
+        //alert(eventosSlots[0]);
+        console.log(Notification.permission)
+        if (Notification.permission === "granted")
+        {
+            new Notification("Recordatorio", 
+            {
+                icon: "./icon.png",
+                body: eventosSlots[0]
+            })
+        }else { Notification.requestPermission();}
         eventosSlots[0] = "null";
     }
     if(date.getHours() === parseInt(horaEventosSlots[1]) && date.getMinutes() === parseInt(minutosEventosSlots[1]))
@@ -160,8 +178,8 @@ window.setInterval(function(){
                     done[0] = false;
                     descansoDado[0] = false;
                     tareasSlots[0] = "null";
-                    horaTareasSlots[0] = 00;
-                    minutosTareasSlots[0] = 00;
+                    horaTareasSlots[0] = 99;
+                    minutosTareasSlots[0] = 99;
                     duracionTareasSlots[0] = 00;
                     duracionTareasMinutosSlots[0] = 00;
 
@@ -230,8 +248,8 @@ if (date.getHours() === parseInt(horaTareasSlots[1]) && date.getMinutes() === pa
                     done[1] = false;
                     descansoDado[1] = false;
                     tareasSlots[1] = "null";
-                    horaTareasSlots[1] = 00;
-                    minutosTareasSlots[1] = 00;
+                    horaTareasSlots[1] = 99;
+                    minutosTareasSlots[1] = 99;
                     duracionTareasSlots[1] = 00;
                     duracionTareasMinutosSlots[1] = 00;
                     escribirMensaje("letXXIV.2", 500, 500);
@@ -797,14 +815,14 @@ const decisionClienteHoraTarea = () => {
             case 'VOLVER':
             case 'volver':
                 tareasSlots[lastTareasSlotsSelector] = "null";
-                horaTareasSlots[lastTareasSlotsSelector] = 00;
-                minutosTareasSlots[lastTareasSlotsSelector] = 00;
+                horaTareasSlots[lastTareasSlotsSelector] = 99;
+                minutosTareasSlots[lastTareasSlotsSelector] = 99;
                 duracionTareasSlots[lastTareasSlotsSelector] = 00;
                 duracionTareasMinutosSlots[lastTareasSlotsSelector] = 00;
                 escribirMensaje("letXXI.4", 500, 500); escribirMensaje("letXV", 1500, 750); return; // Volver al menu 
             default: for (i = 0; i <= horaTareasSlots.length - 1; i++)
                 {
-                    switch (horaTareasSlots[i] === 00)
+                    switch (horaTareasSlots[i] === 99)
                     {
                         case true:
                             if (optionClient.length <= 1) optionClient = "0" + optionClient;
@@ -838,14 +856,14 @@ const decisionClienteMinutosTarea = () => {
                 case 'VOLVER':
                 case 'volver':
                     tareasSlots[lastTareasSlotsSelector] = "null";
-                    horaTareasSlots[lastTareasSlotsSelector] = 00;
-                    minutosTareasSlots[lastTareasSlotsSelector] = 00;
+                    horaTareasSlots[lastTareasSlotsSelector] = 99;
+                    minutosTareasSlots[lastTareasSlotsSelector] = 99;
                     duracionTareasSlots[lastTareasSlotsSelector] = 00;
                     duracionTareasMinutosSlots[lastTareasSlotsSelector] = 00;
                     escribirMensaje("letXXI.4", 500, 500); escribirMensaje("letXV", 1500, 750); return; // Volver al menu 
                 default: for (i = 0; i <= minutosTareasSlots.length - 1; i++)
                     {
-                        switch (minutosTareasSlots[i] === 00)
+                        switch (minutosTareasSlots[i] === 99)
                         {
                             case true:
                                 if (optionClient.length <= 1) optionClient = "0" + optionClient;
@@ -959,8 +977,8 @@ const decisionClienteDuracionTarea = () => {
             case 'volver':
                 msjCliente(optionClient); // Se imprime el mensaje del usuario
                 tareasSlots[lastTareasSlotsSelector] = "null";
-                horaTareasSlots[lastTareasSlotsSelector] = 00;
-                minutosTareasSlots[lastTareasSlotsSelector] = 00;
+                horaTareasSlots[lastTareasSlotsSelector] = 99;
+                minutosTareasSlots[lastTareasSlotsSelector] = 99;
                 sduracionTareasSlots[lastTareasSlotsSelector] = 00;
                 duracionTareasMinutosSlots[lastTareasSlotsSelector] = 00;
                 escribirMensaje("letXXI.4", 500, 500); escribirMensaje("letXV", 1500, 750); return; // Volver al menu 

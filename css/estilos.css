@@ -224,7 +224,7 @@ button {
 #readText::placeholder {
 	font-family: 'Open Sans', sans-serif;
 	font-style: italic;
-	font-size: 15px;
+	font-size: 20px;
 }
 
 #btnReadText {
@@ -289,6 +289,7 @@ button {
 	font-size: 15px;
 }
 
+
 @media (max-width: 550px)
 {
 	#contGral {
@@ -298,7 +299,7 @@ button {
 
 	#contAssistant{
 		width: 100%;
-		height: 86%;
+		height: 86.8%;
 	}
 
 	body {
